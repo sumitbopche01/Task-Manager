@@ -1,1 +1,1 @@
-<?php include_once("taskManager.html"); ?>
+<?php header( 'Location: /index.html'  ) ;  ?>
