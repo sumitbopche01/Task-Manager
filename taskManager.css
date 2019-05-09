@@ -71,10 +71,12 @@ body {
     grid-template-rows: 40px 40px 40px 40px;
     background-color: #eec8a4;
     padding: 5px;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-top: 10px;
+    margin-left: 3%;
     width: 90%;
     align-content: center;
+    background-image: linear-gradient(to right, rgb(180, 178, 174) , rgb(193, 248, 199));
 }
 
 .addBtn {
@@ -83,7 +85,7 @@ body {
     color: white;
     float: left;
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 20px;
     font-weight: bold;
     height: 50%;
     grid-column: 2 / 3;
@@ -120,29 +122,29 @@ option {
 .startWorkingBtn {
     grid-column: 1 / 2;
     grid-row: 4 / -1;
-    background-color: #FFC107;
+    background-color: #f50057;
     color: white;
     text-align: center;
     padding-top: 3px;
     font-weight: bold;
     border-radius: 10px;
-    width: 70%;
-    height: 60%;
+    width: 80%;
+    height: 80%;
     margin: 2px;
-    font-size: 18px;
+    font-size: 1rem;
 }
 
 .doneBtn {
     grid-column: 2 / 3;
     grid-row: 4 / -1;
-    background-color: #81C784;
+    background-color: #66bb6a;
     color: white;
     text-align: center;
     padding-top: 3px;
     font-weight: bold;
     border-radius: 10px;
-    width: 70%;
-    height: 60%;
+    width: 80%;
+    height: 80%;
     margin: 2px;
     font-size: 18px;
 }
@@ -156,8 +158,8 @@ option {
     padding-top: 3px;
     font-weight: bold;
     border-radius: 10px;
-    width: 70%;
-    height: 60%;
+    width: 80%;
+    height: 80%;
     margin: 2px;
     font-size: 18px;
 }
@@ -222,23 +224,36 @@ option {
 }
 
 .addBtn:hover {
-    background-color: green;
-}
-
-
-.taskInHand:hover {
-    background-color: #f3bc88;
+    transform: translateY(-3px);
+    border: solid 1px #CCC;
+    -moz-box-shadow: 5px 5px 0px #999;
+    -webkit-box-shadow: 5px 5px 0px #999;
+        box-shadow: 5px 5px 0px #999;
 }
 
 .startWorkingBtn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    border: solid 1px #CCC;
+    -moz-box-shadow: 5px 5px 0px #999;
+    -webkit-box-shadow: 5px 5px 0px #999;
+        box-shadow: 5px 5px 0px #999;
 }
 
-/* .startWorkingBtn:hover::after {
-    transform: scaleX(1.4) scaleY(1.6);
-    opacity: 0;
-} */
+.deleteBtn:hover {
+    transform: translateY(-3px);
+    border: solid 1px #CCC;
+    -moz-box-shadow: 5px 5px 0px #999;
+    -webkit-box-shadow: 5px 5px 0px #999;
+        box-shadow: 5px 5px 0px #999;
+}
+
+.doneBtn:hover {
+    transform: translateY(-3px);
+    border: solid 1px #CCC;
+    -moz-box-shadow: 5px 5px 0px #999;
+    -webkit-box-shadow: 5px 5px 0px #999;
+        box-shadow: 5px 5px 0px #999;
+}
 
 .index {
     display: none;

@@ -50,7 +50,10 @@ function newElement() {
     let taskTitle = document.getElementById('taskInput').value;
     let priorityEvent = document.getElementById('priority');
     let selectedPriority = priorityEvent.options[priorityEvent.selectedIndex].value;
-
+    if (taskTitle === '') {
+        alert("You must write something");
+        return;
+    }
     let dateObj = new Date();
     let newTaskObj = {
         title: taskTitle,
@@ -73,7 +76,10 @@ function newElement() {
  * @param {integer} index index of task which we want to move from todo task list to ongoing task list
  */
 function startWorkingOnTask(index) {
-    let dataToMove = todoTaskArray.splice(index, 1)
+    let dataToMove = todoTaskArray.splice(index, 1);
+
+    localStorage.setItem('todo', JSON.stringify(todoTaskArray));
+
     dataToMove[0].status = "ongoing";
     ongoingTaskArray.unshift(dataToMove[0]);
 
@@ -93,9 +99,15 @@ function completedTheTask(index, section) {
     let dataToMove;
     if (section === "todo") {
         dataToMove = todoTaskArray.splice(index, 1);
+
+        localStorage.setItem('todo', JSON.stringify(todoTaskArray));
+
         renderUserInterface(todoTaskArray, 'todo');
     } else if (section === "ongoing") {
         dataToMove = ongoingTaskArray.splice(index, 1);
+        
+        localStorage.setItem('ongoing', JSON.stringify(ongoingTaskArray));
+
         renderUserInterface(ongoingTaskArray, 'ongoing');
     }
 
@@ -188,31 +200,23 @@ function sortTasks(sortBy) {
         todoTaskArray = sortByPriority(todoTaskArray);
         ongoingTaskArray = sortByPriority(ongoingTaskArray);
         doneTaskArray = sortByPriority(doneTaskArray);
-
-        applyFilter(filterApplied);
-        // sortedTodo = sortByPriority(todoTaskArray);
-        // sortedOngoing = sortByPriority(ongoingTaskArray);
-        // sortedDone = sortByPriority(doneTaskArray);
     } else if (sortBy == 'date') {
-        sortedTodo = sortByDate(todoTaskArray);
-        sortedOngoing = sortByDate(ongoingTaskArray);
-        sortedDone = sortByDate(doneTaskArray);
+        todoTaskArray = sortByDate(todoTaskArray);
+        ongoingTaskArray = sortByDate(ongoingTaskArray);
+        doneTaskArray = sortByDate(doneTaskArray);
     } else if (sortBy = "none") {
-
         todoTaskArray = JSON.parse(localStorage.getItem("todo")) || [];
         ongoingTaskArray = JSON.parse(localStorage.getItem("ongoing")) || [];
         doneTaskArray = JSON.parse(localStorage.getItem("done")) || [];
-
-        sortedTodo = todoTaskArray;
-        sortedOngoing = ongoingTaskArray;
-        sortedDone = doneTaskArray;
     }
 
-    // renderUserInterface(sortedTodo, 'todo');
-    // renderUserInterface(sortedOngoing, 'ongoing');
-    // renderUserInterface(sortedDone, 'done');
+    applyFilter(filterApplied);
 }
 
+/**
+ * 
+ * @param {Array} arrayToSort Array which we want to sort on priority basis
+ */
 function sortByPriority(arrayToSort) {
     arrayToSort.sort((a, b) => {
         if (a.priority < b.priority) {
@@ -227,14 +231,17 @@ function sortByPriority(arrayToSort) {
 }
 
 function sortByDate(arrayToSort) {
+
     arrayToSort.sort((a, b) => {
-        return JSON.parseInt(b.timestamp) - JSON.parseInt(a.timestamp);
+        console.log("a timestamp ", a.timestamp, "  b.timestamp -- ", b.timestamp);
+        console.log()
+        return ( parseInt(b.timestamp) - parseInt(a.timestamp) );
     });
     return arrayToSort;
 }
 
 (function renderingFilters(filterApplied) {
-    let optionsStr = `<input type="checkbox" name="priority" value="P0" onclick="addFilter('P0')" 
+    let optionsStr = `<span>Select Filters:</span> <input type="checkbox" name="priority" value="P0" onclick="addFilter('P0')" 
     ${filterApplied.indexOf('P0') !== -1 ? "checked" : "" }>P0<br>
     <input type="checkbox" name="priority" value="P1" onclick="addFilter('P1')"
     ${filterApplied.indexOf('P1') !== -1 ? "checked" : "" }>P1<br>
