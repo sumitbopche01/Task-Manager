@@ -241,14 +241,14 @@ function sortByDate(arrayToSort) {
 }
 
 (function renderingFilters(filterApplied) {
-    let optionsStr = `<span>Select Filters:</span> <input type="checkbox" name="priority" value="P0" onclick="addFilter('P0')" 
-    ${filterApplied.indexOf('P0') !== -1 ? "checked" : "" }>P0<br>
-    <input type="checkbox" name="priority" value="P1" onclick="addFilter('P1')"
-    ${filterApplied.indexOf('P1') !== -1 ? "checked" : "" }>P1<br>
-    <input type="checkbox" name="priority" value="P2" onclick="addFilter('P2')"
-    ${filterApplied.indexOf('P2') !== -1 ? "checked" : "" }>P2<br>
-    <input type="checkbox" name="priority" value="P3" onclick="addFilter('P3')"
-    ${filterApplied.indexOf('P3') !== -1 ? "checked" : "" }>P3<br>`
+    let optionsStr = `<span>Select Filters:</span> <label><input type="checkbox" name="priority" value="P0" onclick="addFilter('P0')" 
+    ${filterApplied.indexOf('P0') !== -1 ? "checked" : "" }>P0</label>
+    <label><input type="checkbox" name="priority" value="P1" onclick="addFilter('P1')"
+    ${filterApplied.indexOf('P1') !== -1 ? "checked" : "" }>P1</label>
+    <label><input type="checkbox" name="priority" value="P2" onclick="addFilter('P2')"
+    ${filterApplied.indexOf('P2') !== -1 ? "checked" : "" }>P2</label>
+    <label><input type="checkbox" name="priority" value="P3" onclick="addFilter('P3')"
+    ${filterApplied.indexOf('P3') !== -1 ? "checked" : "" }>P3</label>`
 
     document.getElementById('filtersDiv').innerHTML = optionsStr;
 })(filterApplied);
