@@ -98,7 +98,7 @@ body {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     padding-top: 20px;
-    float: right;
+    /* float: right; */
     padding-left: 55%;
     height: 30%;
     width: 40%;
@@ -115,6 +115,7 @@ body {
 
 option {
     align-content: center;
+    display: block !important;
 }
 
 .startWorkingBtn {
